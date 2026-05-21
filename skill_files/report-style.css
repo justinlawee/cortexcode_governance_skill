@@ -1,0 +1,247 @@
+/* Governance Health Check Report — PDF Stylesheet */
+/* Used by: pandoc --pdf-engine=weasyprint --css=<this file> */
+
+/* ── Page & Typography ─────────────────────────────────── */
+@page {
+  size: A4;
+  margin: 2cm 2.2cm;
+  @bottom-center {
+    content: "Governance Health Check — Confidential";
+    font-size: 8pt;
+    color: #999;
+  }
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font-size: 8pt;
+    color: #999;
+  }
+}
+
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+
+h1 {
+  font-size: 22pt;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.3em;
+  color: #111;
+}
+
+h2 {
+  font-size: 16pt;
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 0.4em;
+  padding-bottom: 0.25em;
+  border-bottom: 2px solid #e0e0e0;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-size: 12pt;
+  font-weight: 600;
+  margin-top: 1.2em;
+  margin-bottom: 0.3em;
+  page-break-after: avoid;
+}
+
+p { margin: 0.4em 0; }
+
+hr {
+  border: none;
+  border-top: 2px solid #e0e0e0;
+  margin: 1.5em 0;
+}
+
+/* ── RAG Score Badges ──────────────────────────────────── */
+/* Usage: <span class="red">RED</span> etc. */
+
+span.red {
+  background-color: #dc2626;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+}
+
+span.amber {
+  background-color: #f59e0b;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+}
+
+span.green {
+  background-color: #16a34a;
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+}
+
+/* Inline tags in recommendations list: smaller pills */
+li span.red, li span.amber, li span.green {
+  font-size: 0.8em;
+  padding: 1px 8px;
+}
+
+/* ── Overall Score — large colored text ────────────────── */
+h2 span.red, h2 span.amber, h2 span.green {
+  font-size: 0.85em;
+  padding: 3px 14px;
+  border-radius: 14px;
+}
+
+/* ── CONFIDENTIAL Banner ───────────────────────────────── */
+div.confidential {
+  background-color: #fef2f2;
+  border: 2px solid #dc2626;
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-bottom: 1em;
+  color: #991b1b;
+  font-weight: 600;
+  font-size: 10pt;
+}
+
+/* ── Domain Section Accents ────────────────────────────── */
+/* Apply via: <div class="domain-red">, etc. wrapping each domain */
+
+div.domain-red > h2 {
+  border-bottom: 3px solid #dc2626;
+  color: #111;
+}
+
+div.domain-amber > h2 {
+  border-bottom: 3px solid #f59e0b;
+  color: #111;
+}
+
+div.domain-green > h2 {
+  border-bottom: 3px solid #16a34a;
+  color: #111;
+}
+
+/* ── Metadata Block ────────────────────────────────────── */
+div.metadata {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-bottom: 1em;
+  font-size: 9.5pt;
+}
+
+div.metadata p {
+  margin: 0.2em 0;
+}
+
+/* ── Blockquotes (small-account note, etc.) ────────────── */
+blockquote {
+  border-left: 4px solid #f59e0b;
+  background-color: #fffbeb;
+  padding: 8px 14px;
+  margin: 0.8em 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 9.5pt;
+  color: #92400e;
+}
+
+/* ── Code Blocks ───────────────────────────────────────── */
+pre {
+  background-color: #f4f4f5;
+  border: 1px solid #e4e4e7;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 8.5pt;
+  line-height: 1.45;
+  page-break-inside: avoid;
+}
+
+code {
+  font-family: "SF Mono", "Fira Code", "Cascadia Code", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+/* Inline code */
+p code, li code, strong code {
+  background-color: #f4f4f5;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.88em;
+}
+
+/* ── Scorecard Table ───────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.8em 0;
+  font-size: 9.5pt;
+  page-break-inside: avoid;
+}
+
+th {
+  background-color: #1e293b;
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 6px 10px;
+}
+
+th:first-child { border-radius: 6px 0 0 0; }
+th:last-child  { border-radius: 0 6px 0 0; }
+
+td {
+  padding: 5px 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tr:nth-child(even) td {
+  background-color: #f8f9fa;
+}
+
+tr:last-child td:first-child { border-radius: 0 0 0 6px; }
+tr:last-child td:last-child  { border-radius: 0 0 6px 0; }
+
+/* Smaller pills inside table cells */
+td span.red, td span.amber, td span.green {
+  font-size: 0.8em;
+  padding: 1px 8px;
+}
+
+/* ── Lists ─────────────────────────────────────────────── */
+ul, ol {
+  margin: 0.4em 0;
+  padding-left: 1.5em;
+}
+
+li {
+  margin: 0.2em 0;
+}
+
+/* ── Findings subsections ──────────────────────────────── */
+/* Bold labels inline: Summary, Findings, What this means, Remediation */
+h3 + p > strong:first-child {
+  color: #374151;
+}
+
+/* ── Page breaks between domains ───────────────────────── */
+div.domain-red, div.domain-amber, div.domain-green {
+  page-break-before: always;
+}
+
+div.domain-red:first-of-type {
+  page-break-before: avoid;
+}
